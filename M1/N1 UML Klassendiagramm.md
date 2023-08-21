@@ -1,5 +1,5 @@
 # UML Klassendiagramm
-
+![UML WIKI BILD](https://gitlab.com/ch-tbz-it/Stud/m320/-/raw/main/N1-UML_Class_Diagramm/x_gitres/UML.png)
 ## 1. Was ist UML?
 Die Unified Modeling Language (vereinheitlichte Modellierungssprache), kurz UML, ist eine standardisierte, grafische Modellierungssprache zur Spezifikation, Konstruktion, Dokumentation und Visualisierung von Software-Teilen und anderen Systemen. Sie besteht aus verschiedenen Diagrammtypen: Aktivitätsdiagramm, Anwendungsfallsdiagramm, Klassendiagramm, Sequenzdiagramm und weitere ...
 
@@ -19,5 +19,3 @@ Jede Klasse wird in drei Bereiche eingeteilt:
 - Name der Klasse
 - Attribute der Klasse (inkl. Symbol für Access Modifier)
 - Methoden der Klasse
-
-## 3. Bedeutung der Symbole
