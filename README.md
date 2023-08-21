@@ -2,6 +2,9 @@
 
 ## (M) Objektorientiertes Design erstellen und modellieren (mittels UML)
 
+- M1 Theorie
+  - [N1 UML Klassendiagramm](/N1/N1%20UML%20Klassendiagramm.md)
+
 ## (D) Objektorientiert implementieren (Fokus Delegation)
 
 ## (V) Objektorientiert implementieren (Fokus Vererbung / Interfaces)
