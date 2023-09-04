@@ -1,4 +1,4 @@
-/*package V1;
+package V1;
 
 public class Sozialarbeiter  extends Human{
     String name;
@@ -13,4 +13,3 @@ public class Sozialarbeiter  extends Human{
 
     Schueler schueler = new Schueler("Linus");
 }
-*/

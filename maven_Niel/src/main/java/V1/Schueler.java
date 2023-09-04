@@ -1,4 +1,4 @@
-/*package V1;
+package V1;
 
 public class Schueler  extends Human{
     String name;
@@ -11,4 +11,3 @@ public class Schueler  extends Human{
         this.name = name;
     }
 }
-*/
