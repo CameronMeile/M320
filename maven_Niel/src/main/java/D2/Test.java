@@ -6,9 +6,14 @@ public class Test {
     int maxPoints;
 
     public void calculateGrade() {
-
-        float Grade = studentPoints * 5 / maxPoints + 1;
-
+        float grade = ((float) studentPoints / maxPoints) * 5 + 1;
+        System.out.println("Grade: " + grade);
     }
 
+    public static void main(String[] args) {
+        Test test = new Test();
+        test.studentPoints = 80;
+        test.maxPoints = 100;
+        test.calculateGrade();
+    }
 }
