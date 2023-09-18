@@ -1,4 +1,4 @@
-package maven_Niel.src.main.java.D2;
+package D2;
 
 public class Test {
 
@@ -10,9 +10,9 @@ public class Test {
         maxPoints = maxpoints;
     }
 
-    public void calculateGrade() {
+    public float calculateGrade() {
         float grade = ((float) studentPoints / maxPoints) * 5 + 1;
-        System.out.println("Grade: " + grade);
+        return(grade);
     }
 
 }
