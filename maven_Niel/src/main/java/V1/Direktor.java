@@ -3,11 +3,8 @@ package V1;
 public class Direktor extends Human{
     String name;
 
-    public String getName() {
-        return name;
-    }
-
+    Sekretaerin sekretaerin = new Sekretaerin("Lisa");
     public Direktor(String name) {
-        this.name = name;
+        super(name);
     }
 }

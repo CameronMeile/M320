@@ -3,14 +3,10 @@ package V1;
 public class Lehrer extends Human{
     String name;
     Sekretaerin sekretaerin = new Sekretaerin("Lisa");
-
-    public String getName() {
-        return name;
-    }
+    Schueler schueler = new Schueler("Linus");
 
     public Lehrer(String name) {
-        this.name = name;
+        super(name);
     }
 
-    Schueler schueler = new Schueler("Linus");
 }

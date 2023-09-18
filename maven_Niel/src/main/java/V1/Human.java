@@ -6,50 +6,17 @@ import java.util.Iterator;
 public class Human {
 
     private String name;
-    private String role;
-    private Direktor direktor;
-    private Schueler schueler;
-    private Lehrer lehrer;
-    private Sekretaerin sekretaerin;
-    private Sozialarbeiter sozialarbeiter;
 
-    public Human(String name, String role) {
-        this.role = role;
-        switch(role) {
-            case "Direktor":
-                direktor = new Direktor(name);
-                break;
-            case "Schueler":
-                 schueler = new Schueler(name);
-                break;
 
-            case "Sekretaerin":
-                sekretaerin = new Sekretaerin(name);
-                break;
-
-            case "Sozialarbeiter":
-                sozialarbeiter = new Sozialarbeiter(name);
-        }
-
+    public Human(String name) {
+       this.name = name;
     }
 
-   public String getName(){
-       switch(role) {
-           case "Direktor":
-                return direktor.getName();
-               break;
-           case "Schueler":
-               schueler = new Schueler(name);
-               break;
+    public String getName(){
+    return name;
+    }
 
-           case "Sekretaerin":
-               sekretaerin = new Sekretaerin(name);
-               break;
-
-           case "Sozialarbeiter":
-               sozialarbeiter = new Sozialarbeiter(name);
-       }
-   }
+   /*
 
     public static void executeTask(String task){
         switch (task){
@@ -125,7 +92,11 @@ public class Human {
         System.out.println("Wie ist dein Name?");
         String name = scanner.nextLine();
         return name;
-    }}
+    }
+    */
+
+    }
+
 
 
 
