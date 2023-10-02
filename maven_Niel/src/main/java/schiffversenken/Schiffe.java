@@ -6,13 +6,23 @@ public class Schiffe {
     public Schiffe(int länge) {
         this.länge = länge;
     }
+    public void checkFitInField(String firstPOS1, String lastPOS2) {
+        if (firstPOS1 ==)
+    }
     public void checkHit() {
-        // Implementiere die Logik für Trefferüberprüfung
+        // Trefferüberprüfung
     }
     public void getShipStatus() {
-        // Implementiere die Logik, um den Schiffstatus abzurufen
+        // Den Schiffstatus abzurufen
     }
     public void getInfoCoordinates() {
-        // Implementiere die Logik, um Informationen über die Koordinaten abzurufen
+        // Informationen über die Koordinaten abzurufen
+    }
+    public static boolean isFirstLetterInRange(String str) {
+        char firstLetter = str.charAt(0);
+        return firstLetter >= 'A' && firstLetter <= 'G';
+
+        char lastLetter = str.charAt(1);
+        return lastLetter >= '1' && firstLetter <= '7';
     }
 }

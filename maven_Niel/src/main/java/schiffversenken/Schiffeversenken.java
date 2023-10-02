@@ -5,8 +5,10 @@ public class Schiffeversenken {
         Player player1 = new Player("player1");
         player1.init();
     }
-
     public void play(){
+
+    }
+    public void showEnemyfield() {
 
     }
 }

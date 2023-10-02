@@ -1,8 +1,10 @@
 package maven_Niel.src.main.java.schiffversenken;
+import java.util.Scanner;
 
 public class input {
     public String stringimput(){
-
-        return null;
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        return input;
     }
 }
