@@ -1,4 +1,4 @@
-package maven_Niel.src.main.java.schiffversenken;
+package schiffversenken;
 import java.util.Scanner;
 
 public class input {

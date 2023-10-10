@@ -1,4 +1,4 @@
-package maven_Niel.src.main.java.schiffversenken;
+package schiffversenken;
 
 public class Schiffeversenken {
     public void init(){

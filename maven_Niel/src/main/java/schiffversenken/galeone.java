@@ -1,6 +1,6 @@
-package maven_Niel.src.main.java.schiffversenken;
+package schiffversenken;
 
-public class galeone extends Schiffe {
+public class galeone extends Schiffe{
     public galeone() {
         super(4);
     }
