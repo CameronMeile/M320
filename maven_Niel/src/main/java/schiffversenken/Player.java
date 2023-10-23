@@ -1,4 +1,5 @@
 package schiffversenken;
+import java.io.Console;
 import java.util.ArrayList;
 
 public class Player {
@@ -37,7 +38,7 @@ public class Player {
         input input = new input();
         yourPlayground();
         placerules();
-        System.out.println("Setzen Sie einen "+name+". Sie ist " +Lenght+" Felder gross:");
+        System.out.println("Setzen Sie einen "+name+", z.B (C4). Sie ist " +Lenght+" Felder gross:");
         System.out.println("Setzen sie die erste Position:");
         String firstPosition = input.stringimput();
         System.out.println("Setzen sie die zweite Position:");
@@ -50,7 +51,7 @@ public class Player {
         yourPlayground();
         System.out.println("Ungültige Position Versuchen sie es erneut");
         placerules();
-        System.out.println("Setzen Sie einen "+name+". Sie ist " +Lenght+" Felder gross:");
+        System.out.println("Setzen Sie einen "+name+", z.B (C4). Sie ist " +Lenght+" Felder gross:");
         System.out.println("Setzen sie die erste Position:");
         String firstPosition = input.stringimput();
         System.out.println("Setzen sie die zweite Position:");
