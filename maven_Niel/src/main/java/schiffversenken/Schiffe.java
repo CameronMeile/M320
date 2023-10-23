@@ -1,5 +1,4 @@
 package schiffversenken;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 

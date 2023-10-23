@@ -1,5 +1,4 @@
 package schiffversenken;
-import java.io.Console;
 import java.util.ArrayList;
 
 public class Player {
@@ -186,12 +185,12 @@ public class Player {
 
 
     private void shipsInit(){
-        schiffeList.add(new galeone());
-        schiffeList.add(new zweimaster());
-        schiffeList.add(new zweimaster());
-        schiffeList.add(new schalupe());
-        schiffeList.add(new schalupe());
-        schiffeList.add(new schalupe());
+        schiffeList.add(new Galeone());
+        schiffeList.add(new Zweimaster());
+        schiffeList.add(new Zweimaster());
+        schiffeList.add(new Schalupe());
+        schiffeList.add(new Schalupe());
+        schiffeList.add(new Schalupe());
     }
 
 
