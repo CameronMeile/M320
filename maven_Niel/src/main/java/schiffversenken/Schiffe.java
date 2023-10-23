@@ -10,9 +10,30 @@ public class Schiffe {
 
     protected int lange;
     protected boolean sunk;
-    public Schiffe(int lange, int xPosition,int yPosisiton) {
-        shipsKoordinaten.add(new ArrayList<Integer>(Arrays.asList(1, 2)));
+    protected String name;
+    public Schiffe(int lange, String name) {
         this.lange = lange;
+        this.name = name;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public int getLenght() {
+        return lange;
+    }
+
+    public void setCordinates(String C1, String C2){
+        char C1X = C1.charAt(0);
+        int C1Xi = Character.getNumericValue(C1X);
+        char C2X = C2.charAt(0);
+        int C2Xi = Character.getNumericValue(C2X);
+        char C1Y = C1.charAt(1);
+        int C1Yi = Character.getNumericValue(C1Y);
+        char C2Y = C2.charAt(1);
+        int C2Yi = Character.getNumericValue(C2Y);
+
     }
 
     public void checkHit() {
@@ -22,7 +43,7 @@ public class Schiffe {
         // Den Schiffstatus abzurufen
     }
     public String getInfoCoordinates(int xCordinate, int yCordinate) {
-        // Informationen über dieKoordinaten abzurufen
+        // Informationen über die Koordinaten abzurufen
         for (ArrayList<Integer> coordinates : shipsKoordinaten) {
             if(xCordinate == coordinates.get(0) && yCordinate == coordinates.get(1)) {
                 return ("#");
@@ -39,11 +60,6 @@ public class Schiffe {
             }
         }
         return("?");
-    }
-
-    public boolean getIfShipIsOnCordiante(int x,int y){
-
-        return(false);
     }
 
 

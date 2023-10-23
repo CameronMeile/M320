@@ -9,43 +9,75 @@ public class Player {
     }
 
     public void init() {
-        input input = new input();
-        ArrayList<String> nameList = shipsName();
-        ArrayList<Integer> langeList = shipsLange();
-
-
-
+        shipsInit();
         placerules();
-        System.out.println("Platzierregel: SIe müssen Anfangs- und Schlusskorrdinaten eingeben, z.B C1,C4");
-        // 1x Galeone platzieren
 
-        System.out.println("Setzen Sie die Galeone Alpha:");
-        for (int i = 0; i < nameList.size(); i++) {
-            //spielfeld()
-            placerules();
-            System.out.println("Setzen Sie einen "+nameList.get(i)+". Sie ist" +shipsLange().get(i)+" Felder gross:");
-            System.out.println("Setzen sie die erste Position:");
-            String firstPosition = input.stringimput();
-            System.out.println("Setzen sie die zweite Position:");
-            String lastPosition = input.stringimput();
-            while (!checkFitInField(firstPosition, lastPosition, shipsLange().get(i))){
-                // spielfeld
-                System.out.println("Ungültige Position Versuchen sie es errneut");
-                placerules();
-                System.out.println("Setzen Sie einen "+nameList.get(i)+". Sie ist " +shipsLange().get(i)+" Felder gross:");
-                System.out.println("Setzen sie die erste Position:");
-                firstPosition = input.stringimput();
-                System.out.println("Setzen sie die zweite Position:");
-                lastPosition = input.stringimput();
+        for (int i = 0; i < schiffeList.size(); i++) {
+            String[] firstApproach =  setSchiffFirstTime(schiffeList.get(i).getName(), schiffeList.get(i).getLenght()).split("\\|");;
+            String firstPosition = firstApproach[0];
+            String lastPosition = firstApproach[1];
+
+            while (!checkFitInField(firstPosition, lastPosition, schiffeList.get(i).getLenght())){
+                 String Approach =  setSchiffIfFailed(schiffeList.get(i).getName(), schiffeList.get(i).getLenght());
+                 firstPosition = Approach.split("|")[0];
+                 lastPosition = Approach.split("|")[1];
+
             }
+            schiffeList.get(i).setCordinates(firstPosition, lastPosition);
         }
-        System.out.println("Setzen Sie die Schalupe Gamma:");
     }
     public void menu() {
 
     }
     public void showEnemyfield() {
 
+    }
+
+    private String setSchiffFirstTime(String name, Integer Lenght){
+        input input = new input();
+        yourPlayground();
+        placerules();
+        System.out.println("Setzen Sie einen "+name+". Sie ist " +Lenght+" Felder gross:");
+        System.out.println("Setzen sie die erste Position:");
+        String firstPosition = input.stringimput();
+        System.out.println("Setzen sie die zweite Position:");
+        String lastPosition = input.stringimput();
+        return firstPosition+"|"+lastPosition;
+    };
+
+    private String setSchiffIfFailed(String name, Integer Lenght) {
+        input input = new input();
+        yourPlayground();
+        System.out.println("Ungültige Position Versuchen sie es erneut");
+        placerules();
+        System.out.println("Setzen Sie einen "+name+". Sie ist " +Lenght+" Felder gross:");
+        System.out.println("Setzen sie die erste Position:");
+        String firstPosition = input.stringimput();
+        System.out.println("Setzen sie die zweite Position:");
+        String lastPosition = input.stringimput();
+        return firstPosition+"|"+lastPosition;
+    };
+    private void yourPlayground(){
+        System.out.println("  A B C D E F G");
+        for(int i=0; i<7; i++){
+            String xLine = Integer.toString(i+1);
+            for(int s=0; s<7; s++){
+                xLine += " "+ getCordinateInfoFromShipsYourSide(s,i);
+            }
+            System.out.println(xLine);
+        }
+    }
+
+    private String getCordinateInfoFromShipsYourSide(int x, int y){
+        for(int i=0; i< schiffeList.size(); i++){
+            String ShipCordinateString =schiffeList.get(i).getInfoCoordinates(x,y);
+            if(!ShipCordinateString.equals("?"))
+                return(ShipCordinateString);
+        }
+        return("?");
+    }
+    private void printA_G(){
+        System.out.println("  A B C D E F G");
     }
 
     private void placerules(){
@@ -63,7 +95,7 @@ public class Player {
         if(!distanceIsEnough(firstPOS1, lastPOS2, lange)){
             return(false);
         }
-        if(!shipHasSpace(firstPOS1, lastPOS2)){
+        if(shipHasSpace(firstPOS1, lastPOS2)){
             return(false);
         }
         return(true);
@@ -151,26 +183,14 @@ public class Player {
         return true;
     };
 
-    private ArrayList<Integer> shipsLange(){
-        ArrayList<Integer> langeList = new ArrayList<Integer>();
-        langeList.add(4);
-        langeList.add(3);
-        langeList.add(3);
-        langeList.add(2);
-        langeList.add(2);
-        langeList.add(2);
-        return(langeList);
-    }
 
-    private ArrayList<String> shipsName(){
-        ArrayList<String> nameList = new ArrayList<String>();
-        nameList.add("Galeone");
-        nameList.add("Zweimaster");
-        nameList.add("Zweimaster");
-        nameList.add("Schalupen");
-        nameList.add("Schalupen");
-        nameList.add("Schalupen");
-        return(nameList);
+    private void shipsInit(){
+        schiffeList.add(new galeone());
+        schiffeList.add(new zweimaster());
+        schiffeList.add(new zweimaster());
+        schiffeList.add(new schalupe());
+        schiffeList.add(new schalupe());
+        schiffeList.add(new schalupe());
     }
 
 
