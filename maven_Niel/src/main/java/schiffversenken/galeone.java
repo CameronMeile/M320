@@ -1,10 +1,10 @@
 package schiffversenken;
 
-public class galeone extends Schiffe{
-    public galeone() {
-        super(4, "galone");
+public class Galeone extends Schiffe{
+    public Galeone() {
+        super(4, "Galone");
     }
-    public void Place() {
+    public void place() {
 
     }
 }

@@ -1,7 +1,7 @@
 package schiffversenken;
 
-public class schalupe extends Schiffe {
-        public schalupe() {
-            super(2,"schalupe");
+public class Schalupe extends Schiffe {
+        public Schalupe() {
+            super(2,"Schalupe");
         }
 }
