@@ -23,7 +23,7 @@ public class Player {
                  lastPosition = Approach.split("|")[1];
 
             }
-            schiffeList.get(i).setCordinates(firstPosition, lastPosition);
+            schiffeList.get(i).setCoordinates(firstPosition, lastPosition);
         }
     }
     public void menu() {

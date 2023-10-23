@@ -24,16 +24,19 @@ public class Schiffe {
         return lange;
     }
 
-    public void setCordinates(String C1, String C2){
-        char C1X = C1.charAt(0);
-        int C1Xi = Character.getNumericValue(C1X);
-        char C2X = C2.charAt(0);
-        int C2Xi = Character.getNumericValue(C2X);
-        char C1Y = C1.charAt(1);
-        int C1Yi = Character.getNumericValue(C1Y);
-        char C2Y = C2.charAt(1);
-        int C2Yi = Character.getNumericValue(C2Y);
+    public void setCoordinates(String C1, String C2) {
+        int startNumber = Character.getNumericValue(C1.charAt(1));
+        int endNumber = Character.getNumericValue(C2.charAt(1));
 
+        int minNumber = Math.min(startNumber, endNumber);
+        int maxNumber = Math.max(startNumber, endNumber);
+
+        for (int i = minNumber; i <= maxNumber; i++) {
+            ArrayList<Integer> sublist = new ArrayList<>();
+            sublist.add(Character.getNumericValue(C1.charAt(0)));
+            sublist.add(i);
+            shipsKoordinaten.add(sublist);
+        }
     }
 
     public void checkHit() {
