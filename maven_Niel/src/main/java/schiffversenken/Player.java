@@ -45,10 +45,29 @@ public class Player {
         printMenuAuswahl();
         input input = new input();
         int actionNumber = input.MenuInput();
-        executeAction(actionNumber);
-        if(actionNumber == 1) return;
+        executeAction(actionNumber, gegenspieler);
+        if(!(actionNumber == 2)) return;
         }
     }
+
+    private void executeAction(int actionNumber, Player gegenSpieler){
+        switch(actionNumber) {
+            case 1:
+
+                break;
+            case 2:
+                System.out.println("Dein Spielfeld");
+                yourPlayground();
+                break;
+            case 3:
+                System.out.println("Du hast aufgegeben");
+                System.out.println("Gut gekämpft "+name);
+                break;
+            default:
+                System.out.println("Diese Action gibt es nicht. Versuche es erneut");
+        }
+    }
+
 
     private void printMenuAuswahl(){
         System.out.println("Sie sind am Zug");
