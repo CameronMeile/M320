@@ -9,6 +9,7 @@ public class Schiffeversenken {
         player2.init();
         changePlayer("Player1");
     }
+
     public void play(){
         while (!player1.hasLost() && !player2.hasLost()){
             player1.menu(player2);
