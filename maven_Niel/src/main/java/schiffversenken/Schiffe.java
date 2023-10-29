@@ -61,7 +61,7 @@ public class Schiffe {
 
     public String checkHit(cordinate cordinate) {
         // Trefferüberprüfung
-        if(getInfoCoordinates(cordinate.x, cordinate.y).equals("#")){
+        if(getInfoCoordinates(cordinate.x, cordinate.y).equals("*")){
             shipsKoordinaten.removeIf(cord -> {
                 if (cord.checkCordinate(cordinate.x, cordinate.y)) {
                     shipsKoordinatenSunken.add(cord);
@@ -84,16 +84,16 @@ public class Schiffe {
         // Informationen über die Koordinaten abzurufen
         for (cordinate coordinates : shipsKoordinaten) {
             if(coordinates.checkCordinate(xCordinate, yCordinate))  {
-                return ("#");
+                return ("*");
             }
         }
         for (cordinate coordinates : shipsKoordinatenSunken) {
             if(coordinates.checkCordinate(xCordinate,yCordinate)) {
                 if(sunk){
-                    return ("-");
+                    return ("#");
                 }
                 else {
-                    return ("?");
+                    return ("X");
                 }
             }
         }

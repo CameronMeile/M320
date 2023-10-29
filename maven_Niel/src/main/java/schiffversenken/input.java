@@ -8,10 +8,16 @@ public class input {
         return input;
     }
 
+    public void pressEnter(){
+        System.out.println("Drücken sie Enter um fortzufahren");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+    }
+
     public int MenuInput(){
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        int returnNumber = convertLetterToNumber(input);
+        int returnNumber = Integer.parseInt(input);
         return returnNumber;
     }
 

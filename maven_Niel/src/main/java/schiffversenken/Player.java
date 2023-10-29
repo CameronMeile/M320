@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Player {
     protected String name;
     protected ArrayList<Schiffe> schiffeList = new ArrayList<Schiffe>();
+    protected ArrayList<cordinate> gotShoot = new ArrayList<cordinate>();
 
     protected boolean lost = false;
     public Player(String name){
@@ -41,12 +42,12 @@ public class Player {
     }
     public void menu(Player gegenspieler) {
         while (true){
-        gegenspieler.showEnemyfield();
+        gegenspieler.Playground(false);
         printMenuAuswahl();
         input input = new input();
         int actionNumber = input.MenuInput();
         executeAction(actionNumber, gegenspieler);
-        if(!(actionNumber == 2)) return;
+        if(actionNumber == 3 || actionNumber == 1) return;
         }
     }
 
@@ -57,7 +58,7 @@ public class Player {
                 break;
             case 2:
                 System.out.println("Dein Spielfeld");
-                yourPlayground();
+                Playground(true);
                 break;
             case 3:
                 System.out.println("Du hast aufgegeben");
@@ -93,17 +94,13 @@ public class Player {
         System.out.println("3: Aufgeben");
     }
 
-    public void showEnemyfield() {
-
-    }
-
     private cordinate[] setSchiffFirstTime(String name, Integer length){
-        yourPlayground();
+        Playground(true);
         return(defaultsetSchiff(length, name));
     }
 
     private cordinate[] setSchiffIfFailed(String name, Integer Lenght) {
-        yourPlayground();
+        Playground(true);
         System.out.println("Ungültige Position Versuchen sie es erneut");
         return(defaultsetSchiff(Lenght, name));
     };
@@ -118,15 +115,29 @@ public class Player {
         cordinate lastPosition = input.cordinateInput();
         return new cordinate[]{firstPosition, lastPosition};
     };
-    private void yourPlayground(){
+    private void Playground(boolean showMyShips){
         System.out.println("  A B C D E F G");
         for(int i=1; i<8; i++){
             String xLine = Integer.toString(i);
             for(int s=1; s<8; s++){
-                xLine += " "+ getCordinateInfoFromShipsYourSide(s,i);
+                xLine += " ";
+                String ShipSymbol;
+                if(!showMyShips){
+                     ShipSymbol = getCordinateInfoFromShipsYourSide(s,i);
+                     if(ShipSymbol == "*") ShipSymbol = "?";
+                    if(ShipSymbol == "?") ShipSymbol = hitBefore(s,i);
+                }
+                else ShipSymbol = getCordinateInfoFromShipsYourSide(s,i);
+                xLine += ShipSymbol;
             }
             System.out.println(xLine);
         }
+    }
+
+    private String hitBefore(int x, int y){
+        boolean isHitBefore = gotShoot.stream().anyMatch(cord -> cord.checkCordinate(x, y));
+        if(isHitBefore) return("X");
+        else return("?");
     }
 
     private String getCordinateInfoFromShipsYourSide(int x, int y){
@@ -208,7 +219,7 @@ public class Player {
             yCordinate = P1;
         }
         for (Schiffe schiff : schiffeList) {
-            if (schiff.getInfoCoordinates(xCordinate, yCordinate).equals("#")) {
+            if (schiff.getInfoCoordinates(xCordinate, yCordinate).equals("*")) {
                 return false;
             }
         }
