@@ -14,55 +14,57 @@ public class Player {
         placerules();
 
         for (int i = 0; i < schiffeList.size(); i++) {
-            String[] firstApproach =  setSchiffFirstTime(schiffeList.get(i).getName(), schiffeList.get(i).getLenght()).split("\\|");;
-            String firstPosition = firstApproach[0];
-            String lastPosition = firstApproach[1];
+            cordinate[] firstApproach =  setSchiffFirstTime(schiffeList.get(i).getName(), schiffeList.get(i).getLenght());
+            cordinate firstPosition = firstApproach[0];
+            cordinate lastPosition = firstApproach[1];
 
             while (!checkFitInField(firstPosition, lastPosition, schiffeList.get(i).getLenght())){
-                 String Approach =  setSchiffIfFailed(schiffeList.get(i).getName(), schiffeList.get(i).getLenght());
-                 firstPosition = Approach.split("|")[0];
-                 lastPosition = Approach.split("|")[1];
-
+                firstApproach =  setSchiffIfFailed(schiffeList.get(i).getName(), schiffeList.get(i).getLenght());
+                firstPosition = firstApproach[0];
+                lastPosition = firstApproach[1];
             }
             schiffeList.get(i).setCoordinates(firstPosition, lastPosition);
         }
     }
-    public void menu() {
+    public void menu(Player gegenspieler) {
+        printMenuAuswahl();
+    }
+
+    private void printMenuAuswahl(){
+        System.out.println("Sie sind am Zug");
 
     }
+
     public void showEnemyfield() {
 
     }
 
-    private String setSchiffFirstTime(String name, Integer Lenght){
-        input input = new input();
+    private cordinate[] setSchiffFirstTime(String name, Integer length){
         yourPlayground();
-        placerules();
-        System.out.println("Setzen Sie einen "+name+", z.B (C4). Sie ist " +Lenght+" Felder gross:");
-        System.out.println("Setzen sie die erste Position:");
-        String firstPosition = input.stringimput();
-        System.out.println("Setzen sie die zweite Position:");
-        String lastPosition = input.stringimput();
-        return firstPosition+"|"+lastPosition;
-    };
+        return(defaultsetSchiff(length, name));
+    }
 
-    private String setSchiffIfFailed(String name, Integer Lenght) {
-        input input = new input();
+    private cordinate[] setSchiffIfFailed(String name, Integer Lenght) {
         yourPlayground();
         System.out.println("Ungültige Position Versuchen sie es erneut");
+        return(defaultsetSchiff(Lenght, name));
+    };
+
+    private cordinate[] defaultsetSchiff(Integer Lenght, String name) {
         placerules();
+        input input = new input();
         System.out.println("Setzen Sie einen "+name+", z.B (C4). Sie ist " +Lenght+" Felder gross:");
         System.out.println("Setzen sie die erste Position:");
-        String firstPosition = input.stringimput();
+        cordinate firstPosition = input.cordinateInput();
         System.out.println("Setzen sie die zweite Position:");
-        String lastPosition = input.stringimput();
-        return firstPosition+"|"+lastPosition;
+        cordinate lastPosition = input.cordinateInput();
+        return new cordinate[]{firstPosition, lastPosition};
     };
     private void yourPlayground(){
         System.out.println("  A B C D E F G");
-        for(int i=0; i<7; i++){
-            String xLine = Integer.toString(i+1);
-            for(int s=0; s<7; s++){
+        for(int i=1; i<8; i++){
+            String xLine = Integer.toString(i);
+            for(int s=1; s<8; s++){
                 xLine += " "+ getCordinateInfoFromShipsYourSide(s,i);
             }
             System.out.println(xLine);
@@ -77,90 +79,61 @@ public class Player {
         }
         return("?");
     }
-    private void printA_G(){
-        System.out.println("  A B C D E F G");
-    }
-
     private void placerules(){
 
     }
 
-    public boolean checkFitInField(String firstPOS1, String lastPOS2, int lange)
+    public boolean checkFitInField(cordinate firstPOS1, cordinate lastPOS2, int lange)
     {
-        if (!isFirstLetterInRange(firstPOS1) && !isFirstLetterInRange(lastPOS2)){
-            return(false);
-        }
-        if(!isSecoundLetterinRange(firstPOS1) && !isSecoundLetterinRange(lastPOS2)){
-            return (false);
-        }
         if(!distanceIsEnough(firstPOS1, lastPOS2, lange)){
             return(false);
         }
-        if(shipHasSpace(firstPOS1, lastPOS2)){
+        if(!shipHasSpace(firstPOS1, lastPOS2)){
             return(false);
         }
         return(true);
     }
 
-    public boolean isFirstLetterInRange(String str) {
-        char firstLetter = str.charAt(0);
-        return firstLetter >= 'A' && firstLetter <= 'G';
-    }
-
-    public boolean isSecoundLetterinRange(String str) {
-
-        if (str.length() > 1) {
-            char secondChar = str.charAt(1);
-            if (Character.isDigit(secondChar) && secondChar >= '1' && secondChar <= '7') {
-                return(true);
-            }
-        }
-        return(false);
-    }
-
-    private boolean distanceIsEnough(String firPost, String secPost, int lange){
-        char firstCharOFfirPost = firPost.charAt(0);
-        char secCharOFsecPost = secPost.charAt(0);
-        int diffFirstChar = Math.abs( firstCharOFfirPost - secCharOFsecPost);
+    private boolean distanceIsEnough(cordinate firPost, cordinate secPost, int lange){
+        int diffFirstChar = Math.abs(firPost.x - secPost.x);
         if(diffFirstChar + 1 == lange) {
             return(true);
         }
-        char secoundCharOFfirPost = firPost.charAt(1);
-        char secoundCharOFsecPost = secPost.charAt(1);
-        int diffSecoundChar = Math.abs( secoundCharOFsecPost - secoundCharOFfirPost);
-        System.out.println(diffSecoundChar+secoundCharOFsecPost+secoundCharOFfirPost);
+        int diffSecoundChar = Math.abs(firPost.y - secPost.y);
         if(diffSecoundChar + 1 == lange) {
             return(true);
         }
         return(false);
     }
 
-    private boolean shipHasSpace(String pos1, String pos2){
-        char pos1Char1 = pos1.charAt(0);
-        char pos1Char2 = pos1.charAt(1);
-        char pos2Char1 = pos2.charAt(0);
-        char pos2Char2 = pos2.charAt(1);
+    private boolean shipHasSpace(cordinate pos1, cordinate pos2){
         int biggerposition;
         int smallerposition;
         int fixPosition;
         boolean fixPositionIsFirstPosition;
-        if(pos1Char1 == pos2Char1){
-            biggerposition = Math.max(Character.getNumericValue(pos1Char2), Character.getNumericValue(pos2Char2));
-            smallerposition = Math.min(Character.getNumericValue(pos1Char2), Character.getNumericValue(pos2Char2));;
-            fixPosition = pos1Char1;
-            fixPositionIsFirstPosition = true;
-        }
-        else if(pos1Char2 == pos2Char2) {
-            biggerposition = Math.max(Character.getNumericValue(pos1Char1), Character.getNumericValue(pos2Char1));
-            smallerposition = Math.min(Character.getNumericValue(pos1Char1), Character.getNumericValue(pos2Char1));;
-            fixPosition = pos1Char2;
+        if(pos1.x == pos2.x){
+            biggerposition = Math.max(pos1.y,pos2.y);
+            smallerposition = Math.min(pos1.y, pos2.y);;
+            fixPosition = pos1.x;
             fixPositionIsFirstPosition = false;
+        }
+        else if(pos1.y == pos2.y) {
+            biggerposition = Math.max(pos1.x, pos2.x);
+            smallerposition = Math.min(pos1.x, pos2.x);
+            fixPosition = pos1.y;
+            fixPositionIsFirstPosition = true;
         }
         else return(false);
         for (int i = smallerposition-1; i < biggerposition+1; i++) {
-            if(!checkIfFree(i, fixPosition, fixPositionIsFirstPosition)) return(false);
-            if(!checkIfFree(i, fixPosition -1, fixPositionIsFirstPosition)) return(false);
-            if(!checkIfFree(i, fixPosition+ 1, fixPositionIsFirstPosition)) return(false);
+            if(!checkIfFree(i, fixPosition, fixPositionIsFirstPosition)){
+                return(false);
+            }
+            if(!checkIfFree(i, fixPosition -1, fixPositionIsFirstPosition)){
+                return(false);
+            }
+            if(!checkIfFree(i, fixPosition+ 1, fixPositionIsFirstPosition)){
+                return(false);
+            }
         }
         return(true);
     }
@@ -177,7 +150,7 @@ public class Player {
             yCordinate = P1;
         }
         for (Schiffe schiff : schiffeList) {
-            if (!schiff.getInfoCoordinates(xCordinate, yCordinate).equals("#")) {
+            if (schiff.getInfoCoordinates(xCordinate, yCordinate).equals("#")) {
                 return false;
             }
         }
@@ -187,12 +160,11 @@ public class Player {
 
     private void shipsInit(){
         schiffeList.add(new galeone());
+     /*   schiffeList.add(new zweimaster());
         schiffeList.add(new zweimaster());
-        schiffeList.add(new zweimaster());
         schiffeList.add(new schalupe());
         schiffeList.add(new schalupe());
         schiffeList.add(new schalupe());
+      */
     }
-
-
 }

@@ -5,8 +5,8 @@ import java.util.Arrays;
 
 public class Schiffe {
 
-    ArrayList<ArrayList<Integer>> shipsKoordinaten = new ArrayList<ArrayList<Integer>>();
-    ArrayList<ArrayList<Integer>> shipsKoordinatenSunken = new ArrayList<ArrayList<Integer>>();
+    ArrayList<cordinate> shipsKoordinaten = new ArrayList<cordinate>();
+    ArrayList<cordinate> shipsKoordinatenSunken = new ArrayList<cordinate>();
 
     protected int lange;
     protected boolean sunk;
@@ -24,18 +24,34 @@ public class Schiffe {
         return lange;
     }
 
-    public void setCoordinates(String C1, String C2) {
-        int startNumber = Character.getNumericValue(C1.charAt(1));
-        int endNumber = Character.getNumericValue(C2.charAt(1));
-
-        int minNumber = Math.min(startNumber, endNumber);
-        int maxNumber = Math.max(startNumber, endNumber);
+    public void setCoordinates(cordinate C1, cordinate C2) {
+        int minNumber = 0;
+        int maxNumber = 0;
+        boolean ifXfixed = false;
+        if(C1.y == C2.y){
+            minNumber = Math.min(C1.x, C2.x);
+            maxNumber = Math.max(C1.x, C2.x);
+        }
+        if(C1.x == C2.x){
+            minNumber = Math.min(C1.y, C2.y);
+            maxNumber = Math.max(C1.y, C2.y);
+            ifXfixed = true;
+        }
 
         for (int i = minNumber; i <= maxNumber; i++) {
-            ArrayList<Integer> sublist = new ArrayList<>();
-            sublist.add(Character.getNumericValue(C1.charAt(0)));
-            sublist.add(i);
-            shipsKoordinaten.add(sublist);
+            cordinate Cordinate = new cordinate();
+            if(ifXfixed){
+                Cordinate.setX(C1.x);
+                Cordinate.setY(i);
+                System.out.println(C1.x + "" + i);
+
+            }else{
+                Cordinate.setX(i);
+                Cordinate.setY(C1.y);
+                System.out.println(i + "" + C1.y);
+
+            }
+            shipsKoordinaten.add(Cordinate);
         }
     }
 
@@ -47,13 +63,13 @@ public class Schiffe {
     }
     public String getInfoCoordinates(int xCordinate, int yCordinate) {
         // Informationen über die Koordinaten abzurufen
-        for (ArrayList<Integer> coordinates : shipsKoordinaten) {
-            if(xCordinate == coordinates.get(0) && yCordinate == coordinates.get(1)) {
+        for (cordinate coordinates : shipsKoordinaten) {
+            if(coordinates.checkCordinate(xCordinate, yCordinate))  {
                 return ("#");
             }
         }
-        for (ArrayList<Integer> coordinates : shipsKoordinatenSunken) {
-            if(xCordinate == coordinates.get(0) && yCordinate == coordinates.get(1)) {
+        for (cordinate coordinates : shipsKoordinatenSunken) {
+            if(coordinates.checkCordinate(xCordinate,yCordinate)) {
                 if(sunk){
                     return ("-");
                 }

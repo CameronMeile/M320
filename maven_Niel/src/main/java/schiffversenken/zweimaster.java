@@ -1,7 +1,7 @@
 package schiffversenken;
 
-public class Zweimaster extends Schiffe {
-    public Zweimaster() {
+public class zweimaster extends Schiffe {
+    public zweimaster() {
         super(3,"Zweimaster");
     }
 }
