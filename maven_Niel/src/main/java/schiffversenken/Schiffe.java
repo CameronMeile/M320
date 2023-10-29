@@ -8,6 +8,11 @@ public class Schiffe {
     ArrayList<cordinate> shipsKoordinatenSunken = new ArrayList<cordinate>();
 
     protected int lange;
+
+    public boolean isSunk() {
+        return sunk;
+    }
+
     protected boolean sunk;
     protected String name;
     public Schiffe(int lange, String name) {
