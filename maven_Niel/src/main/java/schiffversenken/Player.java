@@ -53,7 +53,7 @@ public class Player {
     private void executeAction(int actionNumber, Player gegenSpieler){
         switch(actionNumber) {
             case 1:
-
+                shoot(gegenSpieler);
                 break;
             case 2:
                 System.out.println("Dein Spielfeld");
@@ -67,6 +67,17 @@ public class Player {
                 System.out.println("Diese Action gibt es nicht. Versuche es erneut");
         }
     }
+
+    private void shoot(Player gegenSpieler){
+        input input = new input();
+        cordinate cordinateToShoot = input.cordinateInput();
+        String shootMessage = gegenSpieler.getShoot(cordinateToShoot);
+        System.out.println(shootMessage);
+    }
+
+    public String getShoot(cordinate cordinate){
+        return("");
+    };
 
 
     private void printMenuAuswahl(){
