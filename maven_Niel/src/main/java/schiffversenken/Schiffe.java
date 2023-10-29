@@ -59,8 +59,23 @@ public class Schiffe {
         }
     }
 
-    public void checkHit() {
+    public String checkHit(cordinate cordinate) {
         // Trefferüberprüfung
+        if(getInfoCoordinates(cordinate.x, cordinate.y).equals("#")){
+            shipsKoordinaten.removeIf(cord -> {
+                if (cord.checkCordinate(cordinate.x, cordinate.y)) {
+                    shipsKoordinatenSunken.add(cord);
+                    return true;
+                }
+                return false;
+            });
+            if(shipsKoordinaten.size() == 0){
+                sunk = true;
+                return("Gesunken");
+            }
+            return("Getroffen");
+        }
+        return("");
     }
     public void getShipStatus() {
         // Den Schiffstatus abzurufen

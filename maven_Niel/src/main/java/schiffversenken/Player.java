@@ -76,7 +76,12 @@ public class Player {
     }
 
     public String getShoot(cordinate cordinate){
-        return("");
+        for(int i=0; i< schiffeList.size(); i++){
+            String checkHitMessage = schiffeList.get(i).checkHit(cordinate);
+            if(checkHitMessage.equals("getroffen") || checkHitMessage.equals("versunken"))
+                return("Du hast das Schiff "+checkHitMessage);
+        }
+        return("Du hast nichts getroffen :(");
     };
 
 
