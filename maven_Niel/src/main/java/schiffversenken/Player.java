@@ -1,10 +1,11 @@
 package schiffversenken;
-import java.io.Console;
 import java.util.ArrayList;
 
 public class Player {
     protected String name;
     protected ArrayList<Schiffe> schiffeList = new ArrayList<Schiffe>();
+
+    protected boolean lost = false;
     public Player(String name){
         this.name = name;
     }
@@ -26,13 +27,35 @@ public class Player {
             schiffeList.get(i).setCoordinates(firstPosition, lastPosition);
         }
     }
+
+    public boolean hasLost(){
+        if(!lost) updateLost();
+        return lost;
+    };
+
+    private void updateLost(){
+        for(int i=0; i< schiffeList.size(); i++){
+            if(!schiffeList.get(i).isSunk())return;
+        }
+        lost = true;
+    }
     public void menu(Player gegenspieler) {
+        while (true){
+        gegenspieler.showEnemyfield();
         printMenuAuswahl();
+        input input = new input();
+        int actionNumber = input.MenuInput();
+        executeAction(actionNumber);
+        if(actionNumber == 1) return;
+        }
     }
 
     private void printMenuAuswahl(){
         System.out.println("Sie sind am Zug");
-
+        System.out.println("Wählen sie ihre Aktion");
+        System.out.println("1: Auf Gegner schiessen");
+        System.out.println("2: Mein Spielfeld anzeigen");
+        System.out.println("3: Aufgeben");
     }
 
     public void showEnemyfield() {
