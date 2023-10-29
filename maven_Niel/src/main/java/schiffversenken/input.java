@@ -17,8 +17,13 @@ public class input {
     public int MenuInput(){
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        int returnNumber = Integer.parseInt(input);
-        return returnNumber;
+        try{
+            int returnNumber = Integer.parseInt(input);
+            return returnNumber;
+        }
+        catch(NumberFormatException e){
+            return(5);
+        }
     }
 
     public cordinate cordinateInput(){

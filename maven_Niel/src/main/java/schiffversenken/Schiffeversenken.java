@@ -4,6 +4,7 @@ public class Schiffeversenken {
     Player player1 = new Player("player1");
     Player player2 = new Player("player2");
     public void init(){
+        changePlayer("Player1");
         player1.init();
         changePlayer("Player2");
         player2.init();
@@ -12,13 +13,16 @@ public class Schiffeversenken {
     public void play(){
         while (!player1.hasLost() && !player2.hasLost()){
             player1.menu(player2);
+            if(player1.hasLost() && player2.hasLost()) break;
             changePlayer("Player2");
-            player1.menu(player1);
+            player2.menu(player1);
+            if(player1.hasLost() && player2.hasLost()) break;
             changePlayer("Player1");
         }
-    }
-    public void showEnemyfield() {
-
+        if(player1.hasLost()){
+            System.out.println("Player1 hat verloren. Player2 gewonnen");
+        }
+        else System.out.println("Player2 hat verloren. Player1 gewonnen");
     }
 
     public void changePlayer(String name){

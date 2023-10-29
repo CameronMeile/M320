@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Schiffe {
+    boolean wasss = false;
 
     ArrayList<cordinate> shipsKoordinaten = new ArrayList<cordinate>();
     ArrayList<cordinate> shipsKoordinatenSunken = new ArrayList<cordinate>();
@@ -63,7 +64,8 @@ public class Schiffe {
         // Trefferüberprüfung
         if(getInfoCoordinates(cordinate.x, cordinate.y).equals("*")){
             shipsKoordinaten.removeIf(cord -> {
-                if (cord.checkCordinate(cordinate.x, cordinate.y)) {
+                wasss = true;
+                if (cord.checkCordinate(cordinate.x, cordinate.y))   {
                     shipsKoordinatenSunken.add(cord);
                     return true;
                 }
@@ -71,9 +73,9 @@ public class Schiffe {
             });
             if(shipsKoordinaten.size() == 0){
                 sunk = true;
-                return("Gesunken");
+                return("gesunken");
             }
-            return("Getroffen");
+            return("getroffen");
         }
         return("");
     }
@@ -93,7 +95,7 @@ public class Schiffe {
                     return ("#");
                 }
                 else {
-                    return ("X");
+                    return ("O");
                 }
             }
         }

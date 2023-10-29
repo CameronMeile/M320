@@ -47,6 +47,7 @@ public class Player {
         input input = new input();
         int actionNumber = input.MenuInput();
         executeAction(actionNumber, gegenspieler);
+        input.pressEnter();
         if(actionNumber == 3 || actionNumber == 1) return;
         }
     }
@@ -63,6 +64,7 @@ public class Player {
             case 3:
                 System.out.println("Du hast aufgegeben");
                 System.out.println("Gut gekämpft "+name);
+                lost = true;
                 break;
             default:
                 System.out.println("Diese Action gibt es nicht. Versuche es erneut");
@@ -79,9 +81,10 @@ public class Player {
     public String getShoot(cordinate cordinate){
         for(int i=0; i< schiffeList.size(); i++){
             String checkHitMessage = schiffeList.get(i).checkHit(cordinate);
-            if(checkHitMessage.equals("getroffen") || checkHitMessage.equals("versunken"))
+            if(checkHitMessage.equals("getroffen") || checkHitMessage.equals("gesunken"))
                 return("Du hast das Schiff "+checkHitMessage);
         }
+        gotShoot.add(cordinate);
         return("Du hast nichts getroffen :(");
     };
 
@@ -109,9 +112,9 @@ public class Player {
         placerules();
         input input = new input();
         System.out.println("Setzen Sie einen "+name+", z.B (C4). Sie ist " +Lenght+" Felder gross:");
-        System.out.println("Setzen sie die erste Position:");
+        System.out.println("Setzen sie die Anfangs Position:");
         cordinate firstPosition = input.cordinateInput();
-        System.out.println("Setzen sie die zweite Position:");
+        System.out.println("Setzen sie die End Position:");
         cordinate lastPosition = input.cordinateInput();
         return new cordinate[]{firstPosition, lastPosition};
     };
