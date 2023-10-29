@@ -8,6 +8,13 @@ public class input {
         return input;
     }
 
+    public int MenuInput(){
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        int returnNumber = convertLetterToNumber(input);
+        return returnNumber;
+    }
+
     public cordinate cordinateInput(){
         Scanner scanner = new Scanner(System.in);
         int x = 0;
