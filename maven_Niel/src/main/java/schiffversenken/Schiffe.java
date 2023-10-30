@@ -48,13 +48,9 @@ public class Schiffe {
             if(ifXfixed){
                 Cordinate.setX(C1.x);
                 Cordinate.setY(i);
-                System.out.println(C1.x + "" + i);
-
             }else{
                 Cordinate.setX(i);
                 Cordinate.setY(C1.y);
-                System.out.println(i + "" + C1.y);
-
             }
             shipsKoordinaten.add(Cordinate);
         }

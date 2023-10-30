@@ -42,6 +42,7 @@ public class Player {
     }
     public void menu(Player gegenspieler) {
         while (true){
+            System.out.println("Spielfeld des Gegners:");
         gegenspieler.Playground(false);
         printMenuAuswahl();
         input input = new input();
