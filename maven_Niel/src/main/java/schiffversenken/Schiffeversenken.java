@@ -13,10 +13,10 @@ public class Schiffeversenken {
     public void play(){
         while (!player1.hasLost() && !player2.hasLost()){
             player1.menu(player2);
-            if(player1.hasLost() && player2.hasLost()) break;
+            if(player1.hasLost() || player2.hasLost()) break;
             changePlayer("Player2");
             player2.menu(player1);
-            if(player1.hasLost() && player2.hasLost()) break;
+            if(player1.hasLost() || player2.hasLost()) break;
             changePlayer("Player1");
         }
         if(player1.hasLost()){
