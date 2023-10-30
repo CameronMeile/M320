@@ -1,7 +1,7 @@
 package schiffversenken;
 import java.util.ArrayList;
 
-public class Player {
+public class Player extends Transformer {
     protected String name;
     protected ArrayList<Schiffe> schiffeList = new ArrayList<Schiffe>();
     protected ArrayList<cordinate> gotShoot = new ArrayList<cordinate>();
@@ -82,8 +82,10 @@ public class Player {
     public String getShoot(cordinate cordinate){
         for(int i=0; i< schiffeList.size(); i++){
             String checkHitMessage = schiffeList.get(i).checkHit(cordinate);
-            if(checkHitMessage.equals("getroffen") || checkHitMessage.equals("gesunken"))
+            if(checkHitMessage.equals("getroffen") || checkHitMessage.equals("gesunken")){
+                System.out.println("Du hast auf "+ translateIntoUserCordinate(cordinate) + " geschossen");
                 return("Du hast das Schiff "+checkHitMessage);
+            }
         }
         gotShoot.add(cordinate);
         return("Du hast nichts getroffen :(");
@@ -233,11 +235,11 @@ public class Player {
 
     private void shipsInit(){
         schiffeList.add(new galeone());
-     /*   schiffeList.add(new zweimaster());
+     /*  schiffeList.add(new zweimaster());
         schiffeList.add(new zweimaster());
         schiffeList.add(new schalupe());
         schiffeList.add(new schalupe());
-        schiffeList.add(new schalupe());
-      */
+        schiffeList.add(new schalupe());*/
+
     }
 }

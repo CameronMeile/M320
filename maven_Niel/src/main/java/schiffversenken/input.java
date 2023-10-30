@@ -41,6 +41,8 @@ public class input {
             try {
                 y = convertStringToNumber(input);
             } catch (NumberFormatException e) {
+                System.out.println("Eingabe ist falsch");
+
             }
         }
         cordinate cordinate = new cordinate();
@@ -79,3 +81,7 @@ public class input {
         }
     }
 }
+
+
+
+

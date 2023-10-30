@@ -60,7 +60,6 @@ public class Schiffe {
         // Trefferüberprüfung
         if(getInfoCoordinates(cordinate.x, cordinate.y).equals("*")){
             shipsKoordinaten.removeIf(cord -> {
-                wasss = true;
                 if (cord.checkCordinate(cordinate.x, cordinate.y))   {
                     shipsKoordinatenSunken.add(cord);
                     return true;
