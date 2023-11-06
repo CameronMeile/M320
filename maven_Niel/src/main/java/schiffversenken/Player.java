@@ -84,7 +84,8 @@ public class Player extends Transformer {
             String checkHitMessage = schiffeList.get(i).checkHit(cordinate);
             if(checkHitMessage.equals("getroffen") || checkHitMessage.equals("gesunken")){
                 System.out.println("Du hast auf "+ translateIntoUserCordinate(cordinate) + " geschossen");
-                return("Du hast das Schiff "+checkHitMessage);
+                if(checkHitMessage.equals("getroffen")) return(schiffeList.get(i).hitMessage());
+                if(checkHitMessage.equals("gesunken")) return(schiffeList.get(i).sinkMessage());
             }
         }
         gotShoot.add(cordinate);

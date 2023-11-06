@@ -2,9 +2,9 @@ package schiffversenken;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Schiffe {
-    boolean wasss = false;
 
+
+public class Schiffe  implements CustomShipsMessage {
     ArrayList<cordinate> shipsKoordinaten = new ArrayList<cordinate>();
     ArrayList<cordinate> shipsKoordinatenSunken = new ArrayList<cordinate>();
 
@@ -16,9 +16,19 @@ public class Schiffe {
 
     protected boolean sunk;
     protected String name;
+
+    public String hitMessage() {
+       return("Treffer! Du hast das Schiff des Gegners getroffen");
+    }
+
+    public String sinkMessage(){
+        return("Versenkt! Du hast das Schiff des Gegners versenkt");
+    }
+
     public Schiffe(int lange, String name) {
         this.lange = lange;
         this.name = name;
+
     }
 
     public String getName(){
